@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+To create documentation for your React component `AudioCutter`, let's break it down into several sections:
 
-## Getting Started
+### Overview
+Certainly! An overview provides a high-level understanding of what the `AudioCutter` component does and its purpose within an application.
 
-First, run the development server:
+### Overview
+
+The `AudioCutter` is a React project designed to facilitate the manipulation and editing of audio files within a web application. It offers a user-friendly interface for tasks such as cutting, removing sections, and saving audio clips. 
+
+1. **Waveform Visualization**: Utilizes the WaveSurfer.js library to display a visual representation of the audio waveform, allowing users to visualize and interact with the audio.
+
+2. **Region Selection**: Allows users to select specific regions of the audio waveform for editing, providing precise control over the editing process.
+
+3. **Cutting and Removing**: Provides functionality to cut or remove selected regions from the audio, enabling users to trim or edit audio clips as needed.
+
+4. **Undo and Redo**: Supports undo and redo operations, allowing users to revert or repeat editing actions as necessary.
+
+5. **Playback Control**: Offers playback control options, including play, pause, and initialization functions, to facilitate audio playback during the editing process.
+
+### Demo
+Include a deployed link to a live demo of the `AudioCutter` component in action.
+
+### Installation
+Setting up the `AudioCutter` component locally involves several steps, including installing dependencies, integrating the component into your project, and configuring any necessary settings. Here's a step-by-step guide to setting it up:
+
+### Prerequisites
+- Make sure you have Node.js and pnpm installed on your system. You can download and install them from the official [Node.js website](https://nodejs.org/).
+
+### Step 1: Clone the project
+If you don't have a React app set up already, you can create one using Create React App:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ShashankGupta10/videodubber.ai-assignment
+cd videodubber.ai-assignment
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Step 2: Install Dependencies
+Navigate to your Next app directory and install the necessary dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Step 3: Run the Development Server
+Start the development server to see the `AudioCutter` project in action:
 
-## Learn More
+```bash
+pnpm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+This command will start the development server, and you should be able to access your app with the `AudioCutter` project at `http://localhost:3000` by default.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Demo
+[Live Demo](https://audio-cutter-3um2ry7oc-shashankgupta10s-projects.vercel.app/)
 
-## Deploy on Vercel
+### Usage
+```javascript
+import AudioCutter from './AudioCutter';
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+const App = () => {
+  return (
+    <div>
+      <AudioCutter audioFile={audioFile} setAudioFile={setAudioFile} />
+    </div>
+  );
+};
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Props
+- `audioFile`: The audio file to be edited.
+- `setAudioFile`: A function to update the audio file after editing.
+
+### Code Explanation
+
+#### State Initialization
+- `waveformRef`: A reference to the waveform container.
+- `wavesurfer`: State to hold the WaveSurfer instance.
+- `region`: State to manage the audio editing region.
+- `duration`: State to store the duration of the audio file.
+- `undoStack` and `redoStack`: States to manage undo and redo operations.
+
+#### WaveSurfer Initialization
+- Initializes the WaveSurfer instance when the component mounts.
+- Sets up event listeners for audio manipulation.
+
+#### Audio Manipulation Functions
+- `handleCut`: Cuts the selected region from the audio.
+- `handleRemove`: Removes the selected region from the audio.
+- `handleSave`: Saves the edited audio file.
+- `handleUndo` and `handleRedo`: Undo and redo operations for audio editing.
+
+#### Playback Functions
+- `handlePlay`: Plays the audio file.
+
+### Dependencies
+- WaveSurfer.js
+- Material-UI
+
+### Example
+```javascript
+import React, { useState } from 'react';
+import AudioCutter from './AudioCutter';
+
+const App = () => {
+  const [audioFile, setAudioFile] = useState(null);
+
+  return (
+    <div>
+      <AudioCutter audioFile={audioFile} setAudioFile={setAudioFile} />
+    </div>
+  );
+};
+
+export default App;
+```
+
+---
+
+This documentation provides an overview, installation instructions, usage examples, and an explanation of the code for the `AudioCutter` project. You can fill in the placeholders with the appropriate details for your component.
